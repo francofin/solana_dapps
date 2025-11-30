@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": ["node", "mocha", "jest"],
+    "lib": ["es2015"],
+    "target": "es6",
+    "typeRoots": ["../node_modules/@types"],
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "include": ["tests/**/*.ts"],
+  "exclude": ["node_modules", "target", "dist"]
+}
