@@ -14,7 +14,7 @@ const IDL = require('../target/idl/voting.json');
 //also need the .so file
 //Need the Idl and Voting to create the context
 
-const votingAddress = new PublicKey("46nBD78RviFsXAUXM9Y9S76yg2EUjsXzvTp9WbV7hz4h");
+const votingAddress = new PublicKey("6qZtvEZKeuzbnEgrkDHoGQkbNVaD4XmeZEJVX6HvTjac");
 
 const deployContract = async() => {
   const context = await startAnchor("", [{name:"voting", programId: votingAddress}], []); //first argument is where to find the tests, Extra Programs and Accounts
@@ -45,12 +45,22 @@ describe('Voting', () => {
   let votingProgram: Program<Voting>;
   let pollAddress: PublicKey;
 
+  // beforeAll(async () => {
+  //   const data = await deployContract();
+  //   votingProgram = data.program;
+  //   provider = data.provider;
+  //   context = data.context;
+  //   pollAddress = data.pollAddress;
+  // });
+
   beforeAll(async () => {
-    const data = await deployContract();
-    votingProgram = data.program;
-    provider = data.provider;
-    context = data.context;
-    pollAddress = data.pollAddress;
+    // using test to set up local configurations
+    votingProgram = anchor.workspace.Voting as Program<Voting>;
+    anchor.setProvider(anchor.AnchorProvider.env());
+    pollAddress = PublicKey.findProgramAddressSync( //Finding the PDA for the poll account
+    [new anchor.BN(1).toArrayLike(Buffer, "le", 8)], //Seeds
+    votingAddress //Program ID
+    )[0];
   });
 
 

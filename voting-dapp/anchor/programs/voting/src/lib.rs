@@ -2,7 +2,7 @@
 
 use anchor_lang::prelude::*;
 
-declare_id!("46nBD78RviFsXAUXM9Y9S76yg2EUjsXzvTp9WbV7hz4h");
+declare_id!("6qZtvEZKeuzbnEgrkDHoGQkbNVaD4XmeZEJVX6HvTjac");
 
 // Anchor programs always use 8 bits for the discriminator
 pub const ANCHOR_DISCRIMINATOR_SIZE: usize = 8;
